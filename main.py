@@ -76,4 +76,13 @@ async def start_bots():
 	await asyncio.gather([asyncio.create_task(start_main_bot()), asyncio.create_task(start_sub_bots())])
 	
 if __name__ == '__main__':
-	asyncio.run(start_bots())
+	#asyncio.run(start_bots())
+	start_webhook(
+		dispatcher=dp,
+		webhook_path=WEBHOOK_PATH,
+		skip_updates=True,
+		on_startup=on_startup,
+		on_shutdown=on_shutdown,
+		host=WEBAPP_HOST,
+		port=WEBAPP_PORT,
+	)
