@@ -50,7 +50,7 @@ async def process_help_cmd(message: types.Message):
 async def process_my_chats_cmd(message: types.Message):
 	await message.answer("penis")
 
-async def start_main_bot():
+def start_main_bot():
 	start_webhook(
 		dispatcher=main_dp,
 		webhook_path=WEBHOOK_PATH,
@@ -61,7 +61,7 @@ async def start_main_bot():
 		port=WEBAPP_PORT,
 	)
 	
-async def start_sub_bots():
+def start_sub_bots():
 	start_webhook(
 		dispatcher=dp,
 		webhook_path=WEBHOOK_PATH,
@@ -73,4 +73,4 @@ async def start_sub_bots():
 	)
 	
 if __name__ == '__main__':
-	asyncio.gather([await start_main_bot(), await start_sub_bots()])
+	asyncio.gather([start_main_bot(), start_sub_bots()])
