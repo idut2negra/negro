@@ -32,7 +32,7 @@ async def on_shutdown(dispatcher):
 	await bot.delete_webhook()
 
 
-@dp.message_handler()
+@dp.message_handler(commands=['start'])
 async def echo(message: types.Message):
 	await message.answer(message.text)
 
