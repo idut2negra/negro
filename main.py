@@ -73,7 +73,7 @@ async def start_sub_bots():
 	)
 	
 async def start_bots():
-	await asyncio.gather([asyncio.create_tast(start_main_bot()), asyncio.create_tast(start_sub_bots())])
+	await asyncio.gather([asyncio.create_task(start_main_bot()), asyncio.create_task(start_sub_bots())])
 	
 if __name__ == '__main__':
 	asyncio.run(start_bots())
