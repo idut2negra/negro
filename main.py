@@ -44,7 +44,7 @@ async def process_start_cmd(message: types.Message):
 async def process_help_cmd(message: types.Message):
 	await message.answer(HELP_CMD_MESSAGE_1)
 
-@dp.message_handler(lambda message.text == START_KB_TEXT_1)
+@dp.message_handler(lambda message: message.text == START_KB_TEXT_1)
 async def process_my_chats_cmd(message: types.Message):
 	await message.answer("penis")
 
