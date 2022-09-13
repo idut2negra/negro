@@ -40,7 +40,7 @@ async def on_shutdown(dispatcher):
 async def process_start_cmd(message: types.Message):
 	keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True).add(START_KB_TEXT_1, START_KB_TEXT_2)
 	await message.answer(START_CMD_MESSAGE_1, reply_markup=keyboard)
-	await db_add_user(message.from_user.id)
+	#await db_add_user(message.from_user.id)
 
 @dp.message_handler(commands=['help'])
 async def process_help_cmd(message: types.Message):
