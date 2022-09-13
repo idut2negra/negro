@@ -6,6 +6,7 @@ from aiogram.utils.executor import start_webhook
 from aiogram import Bot, types
 from db import *
 from messages import *
+import asyncio
 
 
 TOKEN = os.getenv('BOT_TOKEN')
