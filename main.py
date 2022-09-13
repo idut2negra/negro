@@ -4,6 +4,7 @@ from aiogram import Bot
 from aiogram.dispatcher import Dispatcher
 from aiogram.utils.executor import start_webhook
 from aiogram import Bot, types
+from db import *
 from messages import *
 
 
@@ -34,14 +35,31 @@ async def on_shutdown(dispatcher):
 
 
 @dp.message_handler(commands=['start'])
-async def echo(message: types.Message):
-	await message.answer(START_CMD_MESSAGE_1)
+async def process_start_cmd(message: types.Message):
+	keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True).add(START_KB_TEXT_1, START_KB_TEXT_2)
+	await message.answer(START_CMD_MESSAGE_1, reply_markup=keyboard)
+	await db_add_user(message.from_user.id)
 
-@dp.message_handler(commands=['help'])
-async def echo(message: types.Message):
+@main_dp.message_handler(commands=['help'])
+async def process_help_cmd(message: types.Message):
 	await message.answer(HELP_CMD_MESSAGE_1)
 
-if __name__ == '__main__':
+@dp.message_handler(lambda message.text == START_KB_TEXT_1)
+async def process_my_chats_cmd(message: types.Message):
+	await message.answer("penis")
+
+async def start_main_bot():
+	start_webhook(
+		dispatcher=main_dp,
+		webhook_path=WEBHOOK_PATH,
+		skip_updates=True,
+		on_startup=on_startup,
+		on_shutdown=on_shutdown,
+		host=WEBAPP_HOST,
+		port=WEBAPP_PORT,
+	)
+	
+async def start_sub_bots():
 	start_webhook(
 		dispatcher=dp,
 		webhook_path=WEBHOOK_PATH,
@@ -51,3 +69,6 @@ if __name__ == '__main__':
 		host=WEBAPP_HOST,
 		port=WEBAPP_PORT,
 	)
+	
+if __name__ == '__main__':
+	await asyncio.gather([start_main_bot(), start_sub_bots()])
