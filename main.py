@@ -50,7 +50,7 @@ async def process_help_cmd(message: types.Message):
 async def process_my_chats_cmd(message: types.Message):
 	await message.answer("penis")
 
-def start_main_bot():
+async def start_main_bot():
 	await start_webhook(
 		dispatcher=main_dp,
 		webhook_path=WEBHOOK_PATH,
@@ -61,7 +61,7 @@ def start_main_bot():
 		port=WEBAPP_PORT,
 	)
 	
-def start_sub_bots():
+async def start_sub_bots():
 	await start_webhook(
 		dispatcher=dp,
 		webhook_path=WEBHOOK_PATH,
