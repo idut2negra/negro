@@ -42,7 +42,7 @@ async def process_start_cmd(message: types.Message):
 	await message.answer(START_CMD_MESSAGE_1, reply_markup=keyboard)
 	await db_add_user(message.from_user.id)
 
-@main_dp.message_handler(commands=['help'])
+@dp.message_handler(commands=['help'])
 async def process_help_cmd(message: types.Message):
 	await message.answer(HELP_CMD_MESSAGE_1)
 
@@ -73,4 +73,13 @@ def start_sub_bots():
 	)
 	
 if __name__ == '__main__':
-	asyncio.gather([start_main_bot(), start_sub_bots()])
+	#asyncio.gather([start_main_bot(), start_sub_bots()])
+	start_webhook(
+		dispatcher=dp,
+		webhook_path=WEBHOOK_PATH,
+		skip_updates=True,
+		on_startup=on_startup,
+		on_shutdown=on_shutdown,
+		host=WEBAPP_HOST,
+		port=WEBAPP_PORT,
+	)
