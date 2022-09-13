@@ -71,4 +71,4 @@ async def start_sub_bots():
 	)
 	
 if __name__ == '__main__':
-	await asyncio.gather([start_main_bot(), start_sub_bots()])
+	asyncio.gather([start_main_bot(), start_sub_bots()])
