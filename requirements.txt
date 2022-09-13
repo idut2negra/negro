@@ -71,9 +71,3 @@ priority==2.0.0
 py==1.11.0
 pyaes==1.6.1
 pyasn1==0.4.8
-PyAudio==0.2.12
-pycparser==2.21
-pydantic==1.10.2
-pydub==0.25.1
-pyee==8.1.0
-Pygments==2.12.0
